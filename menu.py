@@ -21,7 +21,7 @@ def main() -> None:
         print(
             """ 
             1) Crear un nuevo excel.
-            2) Updatear un archivo excel.
+            2) Modificar un archivo excel.
             3) Subir un archivo.
             4) Descargar un archivo.
             5) Sincronizar.

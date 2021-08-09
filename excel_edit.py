@@ -18,14 +18,22 @@ def writer(header, data, path):
         writer = csv.DictWriter(f, fieldnames = header)
         writer.writeheader()
         writer.writerows(data)
+    
+def choose_column(path) -> tuple:
+    header = get_header(path)
+    for i in range(len(header)):
+        print(f"{i + 1} - {header[i]}")
+    choice = int(input("Elija la Columna que desea editar: "))
+    column = header[choice - 1]
+    return (header, column)
 
 def updater(path):
-    header = get_header(path)
+    header, column = choose_column(path)
     with open(path, newline= "") as f:
         readData = [row for row in csv.DictReader(f)]
         for i in range(len(readData)):
-            newRating = float(input("Ingrese el Nuevo Valor: "))
-            readData[i]["Rating"] = newRating
+            newRating = input("Ingrese el Nuevo Valor: ")
+            readData[i][column] = newRating
     writer(header, readData, path)
 
 updater(path)
